@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
+import ListSubheader from '@material-ui/core/ListSubheader';
 import moviesData from '../../assets/movieData';
 const styles = theme => ({
     root: {
@@ -47,6 +48,9 @@ class Home extends Component{
                 <div className="flex-container">
                     <div className="left">
                         <GridList cellHeight={350} cols={4} className={classes.gridListMain}>
+                        <GridListTile key="Subheader" cols={4} style={{ height: 'auto' }}>
+                     <ListSubheader component="div">Released Movies</ListSubheader>
+                     </GridListTile>
                             {moviesData.map(movie => (
                                 <GridListTile className="released-movie-grid-item" key={"grid" + movie.id}>
                                     <img src={movie.poster_url} className="movie-poster" alt={movie.title} />
