@@ -20,6 +20,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Checkbox from '@material-ui/core/Checkbox';
 import ListItemText from '@material-ui/core/ListItemText';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 const styles = theme => ({
     root: {
         flexGrow: 1,
@@ -48,6 +49,7 @@ const styles = theme => ({
     title: {
         color: theme.palette.primary.light,
     }
+   
  });
 class Home extends Component{
     constructor() {
@@ -169,6 +171,8 @@ class Home extends Component{
                                         InputLabelProps={{ shrink: true }}
                                     />
                                 </FormControl>
+                                <Button className={classes.formControl} variant="contained" color="primary" onClick={this.loginClickHandler}>Apply</Button>
+
                             </CardContent>
                         </Card>
                      </div>
