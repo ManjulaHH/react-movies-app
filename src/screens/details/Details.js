@@ -2,6 +2,11 @@ import React, {Component} from 'react';
 import Header from '../../common/header/Header'
 import moviesData from '../../assets/movieData';
 import Typography from '@material-ui/core/Typography';
+import Home from '../home/Home';
+import YouTube from 'react-youtube';
+import ReactDOM from 'react-dom';
+
+
 import './Details.css';
 
 class Details extends Component {
@@ -19,13 +24,26 @@ class Details extends Component {
         })[0];
         this.setState({ currentState });
     }
-
+    backToHomeHandler = () => {
+        ReactDOM.render(<Home />, document.getElementById('root'));
+    }
     render(){
         let movie = this.state.movie;
-
+        const opts = {
+            height: '300',
+            width: '700',
+            playerVars: {
+                autoplay: 1
+            }
+        }
         return(
             <div className="details">
                 <Header />
+                <div className="back">
+                    <Typography onClick={this.backToHomeHandler}>
+                        &#60; Back to Home
+                        </Typography>
+                </div>
                 <div className="flex-containerDetails">
                     <div className="leftDetails">
                     <img src={movie.poster_url} alt={movie.title} />
@@ -52,7 +70,16 @@ class Details extends Component {
                         <div className="marginTop16">
                             <Typography><span className="bold">Plot:</span> <a href={movie.wiki_url}>(Wiki Link)</a> {movie.storyline} </Typography>
                         </div>
-                        
+                        <div className="trailerContainer">
+                            <Typography>
+                                <span className="bold">Trailer:</span>
+                            </Typography>
+                            <YouTube
+                                videoId={movie.trailer_url.split("?v=")[1]}
+                                opts={opts}
+                                onReady={this._onReady}
+                            />
+                        </div>
 
                      </div>
                     <div className="rightDetails">
