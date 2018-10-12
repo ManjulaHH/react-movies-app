@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import './Home.css';
+import ReactDOM from 'react-dom';
 import Header from '../../common/header/Header';
 import genres from '../../common/genres';
 import artists from '../../common/artists';
+import Details from '../details/Details';
 import { withStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
@@ -71,6 +73,9 @@ class Home extends Component{
     artistSelectHandler = event => {
         this.setState({ artists: event.target.value });
     }
+    movieClickHandler = (movieId) => {
+        ReactDOM.render(<Details movieId={movieId}/>, document.getElementById('root'));
+    }
     render(){
         const { classes } = this.props;
         return(
@@ -94,7 +99,7 @@ class Home extends Component{
                      <ListSubheader component="div">Released Movies</ListSubheader>
                      </GridListTile>
                             {moviesData.map(movie => (
-                                <GridListTile className="released-movie-grid-item" key={"grid" + movie.id}>
+                                <GridListTile onClick = {() => this.movieClickHandler(movie.id)} className="released-movie-grid-item" key={"grid" + movie.id}>
                                     <img src={movie.poster_url} className="movie-poster" alt={movie.title} />
                                     <GridListTileBar
                                         title={movie.title}
